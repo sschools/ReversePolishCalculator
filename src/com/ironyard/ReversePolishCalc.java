@@ -15,22 +15,22 @@ public class ReversePolishCalc {
         stack = new String [tokens.length];
 
         for(int i = 0; i < tokens.length; ++i) {
-            if (tokens[i].equals("+")) {
+            if (tokens[i].equals("+") || tokens[i].equals("-") || tokens[i].equals("*") || tokens[i].equals("/")) {
                 double temp1 = pop();
                 double temp2 = pop();
-                push(temp1 + temp2);
-            } else if (tokens[i].equals("-")) {
-                double temp1 = pop();
-                double temp2 = pop();
-                push(temp2 - temp1);
-            } else if (tokens[i].equals("*")) {
-                double temp1 = pop();
-                double temp2 = pop();
-                push(temp1 * temp2);
-            } else if (tokens[i].equals("/")) {
-                double temp1 = pop();
-                double temp2 = pop();
-                push(temp2 / temp1);
+                switch (tokens[i]) {
+                    case "+":
+                        push(temp2 + temp1);
+                        break;
+                    case "-":
+                        push(temp2 - temp1);
+                        break;
+                    case "*":
+                        push(temp1 * temp2);
+                        break;
+                    case "/":
+                        push(temp2 / temp1);
+                }
             } else {
                 push(tokens[i]);
             }
